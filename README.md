@@ -37,8 +37,8 @@ kubectl get events -w
 kubectl describe 
 
 kubectl logs
-
-delete your cluster with "minikube delete" command
+delete your cluster by running "minikube delete" command.
+ 
 ---------------------------------------------------------------------------------------------------------------------------------
 
 To deploy the same application using terraform 
