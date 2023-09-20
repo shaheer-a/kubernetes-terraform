@@ -1,0 +1,25 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-only-binding
+subjects:
+  - kind: User
+    name: <username> # Replace with the username who needs read-only access
+roleRef:
+  kind: Role
+  name: read-only-role
+  apiGroup: rbac.authorization.k8s.io
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-write-binding
+subjects:
+  - kind: User
+    name: <username> # Replace with the username who needs read-write access
+roleRef:
+  kind: Role
+  name: read-write-role
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 2 # Adjust the number of replicas as needed for scalability
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend-container
+          image: shaheer12/frontend:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "128Mi"  # Specify the desired memory request
+              cpu: "100m"   
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /index.html
+              port: 80
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: frontend-resource-quota
+spec:
+  hard:
+    cpu: "1"
+    memory: 3Gi
