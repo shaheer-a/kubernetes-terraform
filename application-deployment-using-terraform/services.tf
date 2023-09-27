@@ -28,7 +28,10 @@ resource "kubernetes_service" "frontend-service" {
     port {
       port        = 80
       target_port = 80
+      node_port = 30000
     }
+
+    type = "NodePort" # Set the service type to NodePort
   }
 }
 
