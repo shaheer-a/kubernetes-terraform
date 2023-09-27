@@ -32,6 +32,12 @@ kubectl get deployments
 
 kubectl get svc
 
+run the following command for frontend or any other service to be accessible via browser
+
+minikube service --url frontend-service
+
+note: to access any service outside your kubernetes cluster you service type should be nodeport. I just need to access the front end so i am using nodeport for it as a service type. You can change as per your requirement.
+
 kubectl get events -w
 
 kubectl describe 
